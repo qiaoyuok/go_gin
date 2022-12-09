@@ -1,0 +1,18 @@
+mysql:
+  host: "127.0.0.1"
+  port: 3306
+  username: "root"
+  passwd: ""
+  prefix: ""
+
+redis:
+  host: "127.0.0.1"
+  db: 0
+  passwd: ""
+
+log:
+  path: "./logs/"
+  errLogFileName: "err_log"
+  appLogFileName: "app"
+  maxAge: 30  #天为单位
+  maxBack: 30
