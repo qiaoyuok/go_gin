@@ -13,7 +13,7 @@ import (
 )
 
 var C po.Config
-var DB gorm.DB
+var DB *gorm.DB
 var RDB *redis.Client
 var once sync.Once
 
@@ -58,6 +58,7 @@ func initMysql() {
 		fmt.Println("连接数据库出错：", err)
 		return
 	}
+	DB = db
 	query.SetDefault(db.Debug())
 	return
 }
