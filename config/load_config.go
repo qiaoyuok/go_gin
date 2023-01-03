@@ -18,7 +18,7 @@ var RDB *redis.Client
 var once sync.Once
 
 // ConfigFilename 配置文件路径
-const ConfigFilename = "/Users/ourschooldev-01/GolandProjects/school/src/go_gin/config/config.yaml"
+const ConfigFilename = "/Users/sunqiaoyu/www/go_www/src/go_gin/config/config.yaml"
 
 // InitEnv 初始化环境
 func InitEnv() {
@@ -59,7 +59,8 @@ func initMysql() {
 		return
 	}
 	DB = db
-	query.SetDefault(db.Debug())
+	//query.SetDefault(db.Debug())
+	query.SetDefault(db)
 	return
 }
 

@@ -12,44 +12,44 @@ import (
 )
 
 var (
-	Q    = new(Query)
-	User *user
+	Q         = new(Query)
+	KlznSites *klznSites
 )
 
 func SetDefault(db *gorm.DB) {
 	*Q = *Use(db)
-	User = &Q.User
+	KlznSites = &Q.KlznSites
 }
 
 func Use(db *gorm.DB) *Query {
 	return &Query{
-		db:   db,
-		User: newUser(db),
+		db:        db,
+		KlznSites: newKlznSites(db),
 	}
 }
 
 type Query struct {
 	db *gorm.DB
 
-	User user
+	KlznSites klznSites
 }
 
 func (q *Query) Available() bool { return q.db != nil }
 
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
-		db:   db,
-		User: q.User.clone(db),
+		db:        db,
+		KlznSites: q.KlznSites.clone(db),
 	}
 }
 
 type queryCtx struct {
-	User *userDo
+	KlznSites *klznSitesDo
 }
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
-		User: q.User.WithContext(ctx),
+		KlznSites: q.KlznSites.WithContext(ctx),
 	}
 }
 

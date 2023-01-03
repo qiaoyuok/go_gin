@@ -18,7 +18,7 @@ func main() {
 	g.UseDB(db) // reuse your gorm db
 
 	// Generate basic type-safe DAO API for struct `model.User` following conventions
-	g.ApplyBasic(g.GenerateModelAs("user", "User"))
+	g.ApplyBasic(g.GenerateModelAs("sun_klzn_sites", "KlznSites"))
 
 	// Generate the code
 	g.Execute()

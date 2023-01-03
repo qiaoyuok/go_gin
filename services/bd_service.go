@@ -3,6 +3,8 @@ package services
 import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
+	"go_gin/dal/biz"
+	"go_gin/dal/model"
 	"go_gin/dal/po"
 	"go_gin/utils"
 	"net/http"
@@ -69,14 +71,14 @@ func SearchBd(wg *sync.WaitGroup, kw string, page int) error {
 
 	for _, url := range urls {
 		wg.Add(1)
-		go GetUrlTKD(wg, url)
+		go GetUrlTKD(wg, url, kw)
 	}
 
 	return nil
 }
 
 // GetUrlTKD 获取网站TKD
-func GetUrlTKD(wg *sync.WaitGroup, url string) (err error) {
+func GetUrlTKD(wg *sync.WaitGroup, url, kw string) (err error) {
 	defer func() {
 		wg.Done()
 	}()
@@ -109,14 +111,26 @@ func GetUrlTKD(wg *sync.WaitGroup, url string) (err error) {
 	urlParse, _ := url2.Parse(resp.Request.URL.String())
 
 	targetSitePo := po.TargetSitePo{
-		Domain:      urlParse.Host,
+		Domain:      urlParse.Scheme + "://" + urlParse.Host,
 		Url:         resp.Request.URL.String(),
 		Title:       title,
 		Keywords:    keywords,
 		Description: description,
 	}
 
-	fmt.Println(targetSitePo)
+	domain := urlParse.Scheme + "://" + urlParse.Host
+	site := &model.KlznSites{
+		URL:         urlParse.Scheme + "://" + urlParse.Host,
+		TargetURL:   resp.Request.URL.String(),
+		Title:       title,
+		Keywords:    keywords,
+		Description: description,
+		Kw:          kw,
+		Icon:        domain + "/favicon.ico",
+		Status:      1,
+	}
+
+	biz.SaveKlznSite(site)
 	utils.ZapSugarLogger.Info(targetSitePo)
 	return
 }

@@ -1,3 +1,4 @@
 logs/
 tmp/
 a.conf
+.DS_Store

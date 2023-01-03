@@ -1,13 +1,13 @@
 mysql:
-  host: "127.0.0.1"
+  host: "47.116.2.14"
   port: 3306
-  username: "root"
-  passwd: ""
+  username: "sunqiaoyu"
+  passwd: "s13166956607"
   prefix: ""
-  db: "demo"
+  db: "project"
 
 redis:
-  host: "127.0.0.1"
+  host: "47.116.2.14"
   db: 0
   passwd: ""
 
