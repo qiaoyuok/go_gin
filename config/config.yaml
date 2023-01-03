@@ -4,6 +4,7 @@ mysql:
   username: "root"
   passwd: ""
   prefix: ""
+  db: "demo"
 
 redis:
   host: "127.0.0.1"

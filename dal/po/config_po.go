@@ -15,6 +15,7 @@ type MysqlConfigPo struct {
 	Username string `json:"username"`
 	Passwd   string `json:"passwd"`
 	Prefix   string `json:"prefix"`
+	Db       string `json:"db"`
 }
 
 // RedisConfigPo Redis配置

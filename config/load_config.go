@@ -74,6 +74,6 @@ func initRedis() {
 
 // GetDbDsn 获取DSN链接
 func GetDbDsn() (dsn string) {
-	dsn = fmt.Sprintf("%s:%s@(%s:%d)/demo?charset=utf8mb4&parseTime=True&loc=Local", C.Mysql.Username, C.Mysql.Passwd, C.Mysql.Host, C.Mysql.Port)
+	dsn = fmt.Sprintf("%s:%s@(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", C.Mysql.Username, C.Mysql.Passwd, C.Mysql.Host, C.Mysql.Port, C.Mysql.Db)
 	return
 }

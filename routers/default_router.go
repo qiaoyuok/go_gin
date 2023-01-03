@@ -13,5 +13,6 @@ func RegisterRouter(r *gin.Engine) {
 	au.POST("/user-create", controllers.UserCreate)
 	au.GET("/user-list", controllers.UserList)
 	r.POST("/user_login", controllers.UserLogin)
+	r.GET("/bd-search", controllers.BdSearch)
 
 }

@@ -9,6 +9,7 @@ import (
 	"go_gin/services"
 	"go_gin/utils"
 	"net/http"
+	"sync"
 )
 
 func UserList(c *gin.Context) {
@@ -54,4 +55,17 @@ func UserLogin(c *gin.Context) {
 
 	utils.ResSuccess(c, token)
 	return
+}
+
+func BdSearch(c *gin.Context) {
+	wg := sync.WaitGroup{}
+	for i := 1; i <= 2; i++ {
+		wg.Add(1)
+		go func(page int) {
+			services.SearchBd(&wg, "最新电影", page)
+		}(i)
+	}
+
+	wg.Wait()
+	c.String(http.StatusOK, "ok")
 }
