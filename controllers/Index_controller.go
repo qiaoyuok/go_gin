@@ -5,8 +5,6 @@ import (
 	"go_gin/dal/request"
 	"go_gin/services"
 	"go_gin/utils"
-	"net/http"
-	"sync"
 )
 
 func UserLogin(c *gin.Context) {
@@ -30,17 +28,4 @@ func UserLogin(c *gin.Context) {
 
 	utils.ResSuccess(c, token)
 	return
-}
-
-func BdSearch(c *gin.Context) {
-	wg := sync.WaitGroup{}
-	for i := 1; i <= 5; i++ {
-		wg.Add(1)
-		go func(page int) {
-			services.SearchBd(&wg, "民间小调", page)
-		}(i)
-	}
-
-	wg.Wait()
-	c.String(http.StatusOK, "ok")
 }

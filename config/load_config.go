@@ -9,6 +9,7 @@ import (
 	"go_gin/dal/query"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"os"
 	"sync"
 )
 
@@ -16,9 +17,6 @@ var C po.Config
 var DB *gorm.DB
 var RDB *redis.Client
 var once sync.Once
-
-// ConfigFilename 配置文件路径
-const ConfigFilename = "/Users/sunqiaoyu/www/go_www/src/go_gin/config/config.yaml"
 
 // InitEnv 初始化环境
 func InitEnv() {
@@ -31,7 +29,8 @@ func InitEnv() {
 
 // LoadConfig 加载配置文件
 func LoadConfig() {
-	viper.SetConfigFile(ConfigFilename) // 指定配置文件路径
+	configFileName, _ := os.Getwd()
+	viper.SetConfigFile(configFileName + "/config/config.yaml") // 指定配置文件路径
 
 	if err := viper.ReadInConfig(); err != nil { // 查找并读取配置文件
 		fmt.Printf("%s----%#v\n", "加载配置文件出错！", err)
