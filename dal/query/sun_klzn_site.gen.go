@@ -19,40 +19,40 @@ import (
 	"go_gin/dal/model"
 )
 
-func newKlznSites(db *gorm.DB) klznSites {
-	_klznSites := klznSites{}
+func newKlznSite(db *gorm.DB) klznSite {
+	_klznSite := klznSite{}
 
-	_klznSites.klznSitesDo.UseDB(db)
-	_klznSites.klznSitesDo.UseModel(&model.KlznSites{})
+	_klznSite.klznSiteDo.UseDB(db)
+	_klznSite.klznSiteDo.UseModel(&model.KlznSite{})
 
-	tableName := _klznSites.klznSitesDo.TableName()
-	_klznSites.ALL = field.NewAsterisk(tableName)
-	_klznSites.ID = field.NewInt32(tableName, "id")
-	_klznSites.TargetURL = field.NewString(tableName, "target_url")
-	_klznSites.URL = field.NewString(tableName, "url")
-	_klznSites.Logo = field.NewString(tableName, "logo")
-	_klznSites.Icon = field.NewString(tableName, "icon")
-	_klznSites.TopURL = field.NewString(tableName, "top_url")
-	_klznSites.Name = field.NewString(tableName, "name")
-	_klznSites.Title = field.NewString(tableName, "title")
-	_klznSites.Keywords = field.NewString(tableName, "keywords")
-	_klznSites.Description = field.NewString(tableName, "description")
-	_klznSites.Kw = field.NewString(tableName, "kw")
-	_klznSites.Tag = field.NewString(tableName, "tag")
-	_klznSites.Content = field.NewString(tableName, "content")
-	_klznSites.Status = field.NewInt32(tableName, "status")
-	_klznSites.CreatedAt = field.NewTime(tableName, "created_at")
-	_klznSites.UpdatedAt = field.NewTime(tableName, "updated_at")
-	_klznSites.Sort = field.NewInt32(tableName, "sort")
-	_klznSites.IsRecommend = field.NewInt32(tableName, "is_recommend")
+	tableName := _klznSite.klznSiteDo.TableName()
+	_klznSite.ALL = field.NewAsterisk(tableName)
+	_klznSite.ID = field.NewInt32(tableName, "id")
+	_klznSite.TargetURL = field.NewString(tableName, "target_url")
+	_klznSite.URL = field.NewString(tableName, "url")
+	_klznSite.Logo = field.NewString(tableName, "logo")
+	_klznSite.Icon = field.NewString(tableName, "icon")
+	_klznSite.TopURL = field.NewString(tableName, "top_url")
+	_klznSite.Name = field.NewString(tableName, "name")
+	_klznSite.Title = field.NewString(tableName, "title")
+	_klznSite.Keywords = field.NewString(tableName, "keywords")
+	_klznSite.Description = field.NewString(tableName, "description")
+	_klznSite.Kw = field.NewString(tableName, "kw")
+	_klznSite.Tag = field.NewString(tableName, "tag")
+	_klznSite.Content = field.NewString(tableName, "content")
+	_klznSite.Status = field.NewInt32(tableName, "status")
+	_klznSite.CreatedAt = field.NewTime(tableName, "created_at")
+	_klznSite.UpdatedAt = field.NewTime(tableName, "updated_at")
+	_klznSite.Sort = field.NewInt32(tableName, "sort")
+	_klznSite.IsRecommend = field.NewInt32(tableName, "is_recommend")
 
-	_klznSites.fillFieldMap()
+	_klznSite.fillFieldMap()
 
-	return _klznSites
+	return _klznSite
 }
 
-type klznSites struct {
-	klznSitesDo
+type klznSite struct {
+	klznSiteDo
 
 	ALL         field.Asterisk
 	ID          field.Int32
@@ -77,17 +77,17 @@ type klznSites struct {
 	fieldMap map[string]field.Expr
 }
 
-func (k klznSites) Table(newTableName string) *klznSites {
-	k.klznSitesDo.UseTable(newTableName)
+func (k klznSite) Table(newTableName string) *klznSite {
+	k.klznSiteDo.UseTable(newTableName)
 	return k.updateTableName(newTableName)
 }
 
-func (k klznSites) As(alias string) *klznSites {
-	k.klznSitesDo.DO = *(k.klznSitesDo.As(alias).(*gen.DO))
+func (k klznSite) As(alias string) *klznSite {
+	k.klznSiteDo.DO = *(k.klznSiteDo.As(alias).(*gen.DO))
 	return k.updateTableName(alias)
 }
 
-func (k *klznSites) updateTableName(table string) *klznSites {
+func (k *klznSite) updateTableName(table string) *klznSite {
 	k.ALL = field.NewAsterisk(table)
 	k.ID = field.NewInt32(table, "id")
 	k.TargetURL = field.NewString(table, "target_url")
@@ -113,7 +113,7 @@ func (k *klznSites) updateTableName(table string) *klznSites {
 	return k
 }
 
-func (k *klznSites) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
+func (k *klznSite) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 	_f, ok := k.fieldMap[fieldName]
 	if !ok || _f == nil {
 		return nil, false
@@ -122,7 +122,7 @@ func (k *klznSites) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 	return _oe, ok
 }
 
-func (k *klznSites) fillFieldMap() {
+func (k *klznSite) fillFieldMap() {
 	k.fieldMap = make(map[string]field.Expr, 18)
 	k.fieldMap["id"] = k.ID
 	k.fieldMap["target_url"] = k.TargetURL
@@ -144,156 +144,156 @@ func (k *klznSites) fillFieldMap() {
 	k.fieldMap["is_recommend"] = k.IsRecommend
 }
 
-func (k klznSites) clone(db *gorm.DB) klznSites {
-	k.klznSitesDo.ReplaceDB(db)
+func (k klznSite) clone(db *gorm.DB) klznSite {
+	k.klznSiteDo.ReplaceDB(db)
 	return k
 }
 
-type klznSitesDo struct{ gen.DO }
+type klznSiteDo struct{ gen.DO }
 
-func (k klznSitesDo) Debug() *klznSitesDo {
+func (k klznSiteDo) Debug() *klznSiteDo {
 	return k.withDO(k.DO.Debug())
 }
 
-func (k klznSitesDo) WithContext(ctx context.Context) *klznSitesDo {
+func (k klznSiteDo) WithContext(ctx context.Context) *klznSiteDo {
 	return k.withDO(k.DO.WithContext(ctx))
 }
 
-func (k klznSitesDo) ReadDB() *klznSitesDo {
+func (k klznSiteDo) ReadDB() *klznSiteDo {
 	return k.Clauses(dbresolver.Read)
 }
 
-func (k klznSitesDo) WriteDB() *klznSitesDo {
+func (k klznSiteDo) WriteDB() *klznSiteDo {
 	return k.Clauses(dbresolver.Write)
 }
 
-func (k klznSitesDo) Clauses(conds ...clause.Expression) *klznSitesDo {
+func (k klznSiteDo) Clauses(conds ...clause.Expression) *klznSiteDo {
 	return k.withDO(k.DO.Clauses(conds...))
 }
 
-func (k klznSitesDo) Returning(value interface{}, columns ...string) *klznSitesDo {
+func (k klznSiteDo) Returning(value interface{}, columns ...string) *klznSiteDo {
 	return k.withDO(k.DO.Returning(value, columns...))
 }
 
-func (k klznSitesDo) Not(conds ...gen.Condition) *klznSitesDo {
+func (k klznSiteDo) Not(conds ...gen.Condition) *klznSiteDo {
 	return k.withDO(k.DO.Not(conds...))
 }
 
-func (k klznSitesDo) Or(conds ...gen.Condition) *klznSitesDo {
+func (k klznSiteDo) Or(conds ...gen.Condition) *klznSiteDo {
 	return k.withDO(k.DO.Or(conds...))
 }
 
-func (k klznSitesDo) Select(conds ...field.Expr) *klznSitesDo {
+func (k klznSiteDo) Select(conds ...field.Expr) *klznSiteDo {
 	return k.withDO(k.DO.Select(conds...))
 }
 
-func (k klznSitesDo) Where(conds ...gen.Condition) *klznSitesDo {
+func (k klznSiteDo) Where(conds ...gen.Condition) *klznSiteDo {
 	return k.withDO(k.DO.Where(conds...))
 }
 
-func (k klznSitesDo) Exists(subquery interface{ UnderlyingDB() *gorm.DB }) *klznSitesDo {
+func (k klznSiteDo) Exists(subquery interface{ UnderlyingDB() *gorm.DB }) *klznSiteDo {
 	return k.Where(field.CompareSubQuery(field.ExistsOp, nil, subquery.UnderlyingDB()))
 }
 
-func (k klznSitesDo) Order(conds ...field.Expr) *klznSitesDo {
+func (k klznSiteDo) Order(conds ...field.Expr) *klznSiteDo {
 	return k.withDO(k.DO.Order(conds...))
 }
 
-func (k klznSitesDo) Distinct(cols ...field.Expr) *klznSitesDo {
+func (k klznSiteDo) Distinct(cols ...field.Expr) *klznSiteDo {
 	return k.withDO(k.DO.Distinct(cols...))
 }
 
-func (k klznSitesDo) Omit(cols ...field.Expr) *klznSitesDo {
+func (k klznSiteDo) Omit(cols ...field.Expr) *klznSiteDo {
 	return k.withDO(k.DO.Omit(cols...))
 }
 
-func (k klznSitesDo) Join(table schema.Tabler, on ...field.Expr) *klznSitesDo {
+func (k klznSiteDo) Join(table schema.Tabler, on ...field.Expr) *klznSiteDo {
 	return k.withDO(k.DO.Join(table, on...))
 }
 
-func (k klznSitesDo) LeftJoin(table schema.Tabler, on ...field.Expr) *klznSitesDo {
+func (k klznSiteDo) LeftJoin(table schema.Tabler, on ...field.Expr) *klznSiteDo {
 	return k.withDO(k.DO.LeftJoin(table, on...))
 }
 
-func (k klznSitesDo) RightJoin(table schema.Tabler, on ...field.Expr) *klznSitesDo {
+func (k klznSiteDo) RightJoin(table schema.Tabler, on ...field.Expr) *klznSiteDo {
 	return k.withDO(k.DO.RightJoin(table, on...))
 }
 
-func (k klznSitesDo) Group(cols ...field.Expr) *klznSitesDo {
+func (k klznSiteDo) Group(cols ...field.Expr) *klznSiteDo {
 	return k.withDO(k.DO.Group(cols...))
 }
 
-func (k klznSitesDo) Having(conds ...gen.Condition) *klznSitesDo {
+func (k klznSiteDo) Having(conds ...gen.Condition) *klznSiteDo {
 	return k.withDO(k.DO.Having(conds...))
 }
 
-func (k klznSitesDo) Limit(limit int) *klznSitesDo {
+func (k klznSiteDo) Limit(limit int) *klznSiteDo {
 	return k.withDO(k.DO.Limit(limit))
 }
 
-func (k klznSitesDo) Offset(offset int) *klznSitesDo {
+func (k klznSiteDo) Offset(offset int) *klznSiteDo {
 	return k.withDO(k.DO.Offset(offset))
 }
 
-func (k klznSitesDo) Scopes(funcs ...func(gen.Dao) gen.Dao) *klznSitesDo {
+func (k klznSiteDo) Scopes(funcs ...func(gen.Dao) gen.Dao) *klznSiteDo {
 	return k.withDO(k.DO.Scopes(funcs...))
 }
 
-func (k klznSitesDo) Unscoped() *klznSitesDo {
+func (k klznSiteDo) Unscoped() *klznSiteDo {
 	return k.withDO(k.DO.Unscoped())
 }
 
-func (k klznSitesDo) Create(values ...*model.KlznSites) error {
+func (k klznSiteDo) Create(values ...*model.KlznSite) error {
 	if len(values) == 0 {
 		return nil
 	}
 	return k.DO.Create(values)
 }
 
-func (k klznSitesDo) CreateInBatches(values []*model.KlznSites, batchSize int) error {
+func (k klznSiteDo) CreateInBatches(values []*model.KlznSite, batchSize int) error {
 	return k.DO.CreateInBatches(values, batchSize)
 }
 
 // Save : !!! underlying implementation is different with GORM
 // The method is equivalent to executing the statement: db.Clauses(clause.OnConflict{UpdateAll: true}).Create(values)
-func (k klznSitesDo) Save(values ...*model.KlznSites) error {
+func (k klznSiteDo) Save(values ...*model.KlznSite) error {
 	if len(values) == 0 {
 		return nil
 	}
 	return k.DO.Save(values)
 }
 
-func (k klznSitesDo) First() (*model.KlznSites, error) {
+func (k klznSiteDo) First() (*model.KlznSite, error) {
 	if result, err := k.DO.First(); err != nil {
 		return nil, err
 	} else {
-		return result.(*model.KlznSites), nil
+		return result.(*model.KlznSite), nil
 	}
 }
 
-func (k klznSitesDo) Take() (*model.KlznSites, error) {
+func (k klznSiteDo) Take() (*model.KlznSite, error) {
 	if result, err := k.DO.Take(); err != nil {
 		return nil, err
 	} else {
-		return result.(*model.KlznSites), nil
+		return result.(*model.KlznSite), nil
 	}
 }
 
-func (k klznSitesDo) Last() (*model.KlznSites, error) {
+func (k klznSiteDo) Last() (*model.KlznSite, error) {
 	if result, err := k.DO.Last(); err != nil {
 		return nil, err
 	} else {
-		return result.(*model.KlznSites), nil
+		return result.(*model.KlznSite), nil
 	}
 }
 
-func (k klznSitesDo) Find() ([]*model.KlznSites, error) {
+func (k klznSiteDo) Find() ([]*model.KlznSite, error) {
 	result, err := k.DO.Find()
-	return result.([]*model.KlznSites), err
+	return result.([]*model.KlznSite), err
 }
 
-func (k klznSitesDo) FindInBatch(batchSize int, fc func(tx gen.Dao, batch int) error) (results []*model.KlznSites, err error) {
-	buf := make([]*model.KlznSites, 0, batchSize)
+func (k klznSiteDo) FindInBatch(batchSize int, fc func(tx gen.Dao, batch int) error) (results []*model.KlznSite, err error) {
+	buf := make([]*model.KlznSite, 0, batchSize)
 	err = k.DO.FindInBatches(&buf, batchSize, func(tx gen.Dao, batch int) error {
 		defer func() { results = append(results, buf...) }()
 		return fc(tx, batch)
@@ -301,49 +301,49 @@ func (k klznSitesDo) FindInBatch(batchSize int, fc func(tx gen.Dao, batch int) e
 	return results, err
 }
 
-func (k klznSitesDo) FindInBatches(result *[]*model.KlznSites, batchSize int, fc func(tx gen.Dao, batch int) error) error {
+func (k klznSiteDo) FindInBatches(result *[]*model.KlznSite, batchSize int, fc func(tx gen.Dao, batch int) error) error {
 	return k.DO.FindInBatches(result, batchSize, fc)
 }
 
-func (k klznSitesDo) Attrs(attrs ...field.AssignExpr) *klznSitesDo {
+func (k klznSiteDo) Attrs(attrs ...field.AssignExpr) *klznSiteDo {
 	return k.withDO(k.DO.Attrs(attrs...))
 }
 
-func (k klznSitesDo) Assign(attrs ...field.AssignExpr) *klznSitesDo {
+func (k klznSiteDo) Assign(attrs ...field.AssignExpr) *klznSiteDo {
 	return k.withDO(k.DO.Assign(attrs...))
 }
 
-func (k klznSitesDo) Joins(fields ...field.RelationField) *klznSitesDo {
+func (k klznSiteDo) Joins(fields ...field.RelationField) *klznSiteDo {
 	for _, _f := range fields {
 		k = *k.withDO(k.DO.Joins(_f))
 	}
 	return &k
 }
 
-func (k klznSitesDo) Preload(fields ...field.RelationField) *klznSitesDo {
+func (k klznSiteDo) Preload(fields ...field.RelationField) *klznSiteDo {
 	for _, _f := range fields {
 		k = *k.withDO(k.DO.Preload(_f))
 	}
 	return &k
 }
 
-func (k klznSitesDo) FirstOrInit() (*model.KlznSites, error) {
+func (k klznSiteDo) FirstOrInit() (*model.KlznSite, error) {
 	if result, err := k.DO.FirstOrInit(); err != nil {
 		return nil, err
 	} else {
-		return result.(*model.KlznSites), nil
+		return result.(*model.KlznSite), nil
 	}
 }
 
-func (k klznSitesDo) FirstOrCreate() (*model.KlznSites, error) {
+func (k klznSiteDo) FirstOrCreate() (*model.KlznSite, error) {
 	if result, err := k.DO.FirstOrCreate(); err != nil {
 		return nil, err
 	} else {
-		return result.(*model.KlznSites), nil
+		return result.(*model.KlznSite), nil
 	}
 }
 
-func (k klznSitesDo) FindByPage(offset int, limit int) (result []*model.KlznSites, count int64, err error) {
+func (k klznSiteDo) FindByPage(offset int, limit int) (result []*model.KlznSite, count int64, err error) {
 	result, err = k.Offset(offset).Limit(limit).Find()
 	if err != nil {
 		return
@@ -358,7 +358,7 @@ func (k klznSitesDo) FindByPage(offset int, limit int) (result []*model.KlznSite
 	return
 }
 
-func (k klznSitesDo) ScanByPage(result interface{}, offset int, limit int) (count int64, err error) {
+func (k klznSiteDo) ScanByPage(result interface{}, offset int, limit int) (count int64, err error) {
 	count, err = k.Count()
 	if err != nil {
 		return
@@ -368,15 +368,15 @@ func (k klznSitesDo) ScanByPage(result interface{}, offset int, limit int) (coun
 	return
 }
 
-func (k klznSitesDo) Scan(result interface{}) (err error) {
+func (k klznSiteDo) Scan(result interface{}) (err error) {
 	return k.DO.Scan(result)
 }
 
-func (k klznSitesDo) Delete(models ...*model.KlznSites) (result gen.ResultInfo, err error) {
+func (k klznSiteDo) Delete(models ...*model.KlznSite) (result gen.ResultInfo, err error) {
 	return k.DO.Delete(models)
 }
 
-func (k *klznSitesDo) withDO(do gen.Dao) *klznSitesDo {
+func (k *klznSiteDo) withDO(do gen.Dao) *klznSiteDo {
 	k.DO = *do.(*gen.DO)
 	return k
 }

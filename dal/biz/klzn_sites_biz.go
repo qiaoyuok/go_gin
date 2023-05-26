@@ -6,8 +6,8 @@ import (
 	"go_gin/dal/query"
 )
 
-func SaveKlznSite(site *model.KlznSites) {
-	ks := query.KlznSites
+func SaveKlznSite(site *model.KlznSite) {
+	ks := query.KlznSite
 	err := ks.Create(site)
 	if err != nil {
 		return

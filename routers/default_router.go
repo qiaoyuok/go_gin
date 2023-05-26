@@ -11,5 +11,6 @@ func RegisterRouter(r *gin.Engine) {
 
 	r.POST("/user_login", controllers.UserLogin)
 	r.GET("/bd-search", controllers.BdSearch)
+	r.GET("/article-search", controllers.GetArticleTKD)
 
 }

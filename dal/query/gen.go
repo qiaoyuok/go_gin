@@ -13,25 +13,29 @@ import (
 
 var (
 	Q         = new(Query)
-	KlznSites *klznSites
+	KlznMovie *klznMovie
+	KlznSite  *klznSite
 )
 
 func SetDefault(db *gorm.DB) {
 	*Q = *Use(db)
-	KlznSites = &Q.KlznSites
+	KlznMovie = &Q.KlznMovie
+	KlznSite = &Q.KlznSite
 }
 
 func Use(db *gorm.DB) *Query {
 	return &Query{
 		db:        db,
-		KlznSites: newKlznSites(db),
+		KlznMovie: newKlznMovie(db),
+		KlznSite:  newKlznSite(db),
 	}
 }
 
 type Query struct {
 	db *gorm.DB
 
-	KlznSites klznSites
+	KlznMovie klznMovie
+	KlznSite  klznSite
 }
 
 func (q *Query) Available() bool { return q.db != nil }
@@ -39,17 +43,20 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:        db,
-		KlznSites: q.KlznSites.clone(db),
+		KlznMovie: q.KlznMovie.clone(db),
+		KlznSite:  q.KlznSite.clone(db),
 	}
 }
 
 type queryCtx struct {
-	KlznSites *klznSitesDo
+	KlznMovie *klznMovieDo
+	KlznSite  *klznSiteDo
 }
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
-		KlznSites: q.KlznSites.WithContext(ctx),
+		KlznMovie: q.KlznMovie.WithContext(ctx),
+		KlznSite:  q.KlznSite.WithContext(ctx),
 	}
 }
 

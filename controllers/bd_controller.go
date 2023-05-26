@@ -19,3 +19,7 @@ func BdSearch(c *gin.Context) {
 	wg.Wait()
 	c.String(http.StatusOK, "ok")
 }
+
+func GetArticleTKD(c *gin.Context) {
+	services.GetTKD("https://www.poluoa.com/28855/")
+}

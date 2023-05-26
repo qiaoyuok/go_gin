@@ -8,10 +8,10 @@ import (
 	"time"
 )
 
-const TableNameKlznSites = "sun_klzn_sites"
+const TableNameKlznSite = "sun_klzn_site"
 
-// KlznSites mapped from table <sun_klzn_sites>
-type KlznSites struct {
+// KlznSite mapped from table <sun_klzn_site>
+type KlznSite struct {
 	ID          int32     `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	TargetURL   string    `gorm:"column:target_url;not null" json:"target_url"`                           // 捕获到的目标URL
 	URL         string    `gorm:"column:url;not null" json:"url"`                                         // 网站URL
@@ -32,7 +32,7 @@ type KlznSites struct {
 	IsRecommend int32     `gorm:"column:is_recommend;not null;default:2" json:"is_recommend"`             // 是否推荐；1：是；2：否
 }
 
-// TableName KlznSites's table name
-func (*KlznSites) TableName() string {
-	return TableNameKlznSites
+// TableName KlznSite's table name
+func (*KlznSite) TableName() string {
+	return TableNameKlznSite
 }

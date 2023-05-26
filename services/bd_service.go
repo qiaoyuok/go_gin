@@ -119,7 +119,7 @@ func GetUrlTKD(wg *sync.WaitGroup, url, kw string) (err error) {
 	}
 
 	domain := urlParse.Scheme + "://" + urlParse.Host
-	site := &model.KlznSites{
+	site := &model.KlznSite{
 		URL:         urlParse.Scheme + "://" + urlParse.Host,
 		TargetURL:   resp.Request.URL.String(),
 		Title:       title,
