@@ -23,3 +23,10 @@ func BdSearch(c *gin.Context) {
 func GetArticleTKD(c *gin.Context) {
 	services.GetTKD("https://www.poluoa.com/28855/")
 }
+
+func GetDYVideoList(c *gin.Context) {
+
+	//services.GetDYVideoList("MS4wLjABAAAAUoce16bhp1iv971RZnOk0xcRNoxZ1gYAethlFJZyJhY", 0, 30)
+	//services.GetDYVideoList("MS4wLjABAAAAKhBpJ9JK3NUJkF-mRZPOU_8AJdGRiR0EGMRYsH8O_vBbXURciLlYd1-_Vbn6JboT", 0, 30)
+	services.GetDYVideoList("MS4wLjABAAAAyub-MX8KJ7rA875VbEuopiEvCRORS6aYAc7dfKy57cE", 0, 30)
+}

@@ -47,6 +47,7 @@ func GetTKD(url string) {
 		Keyword:     keywords,
 		Description: description,
 		Content:     content,
+		Status:      true,
 	}
 
 	//fmt.Println(title, urlParse)

@@ -1,6 +1,8 @@
 package utils
 
 import (
+	"bytes"
+	"encoding/json"
 	"golang.org/x/text/encoding/simplifiedchinese"
 	"unicode/utf8"
 )
@@ -15,4 +17,14 @@ func GetUtf8(str string) string {
 		return string(bytes)
 	}
 	return str
+}
+
+func JsonPretty(elem interface{}) string {
+	buffer := new(bytes.Buffer)
+	encoder := json.NewEncoder(buffer)
+	encoder.SetIndent("", "\t")
+	if err := encoder.Encode(elem); err != nil {
+		return ""
+	}
+	return buffer.String()
 }
